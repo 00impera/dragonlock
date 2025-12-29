@@ -192,6 +192,41 @@
       color: #00ffb3;
       font-weight: 700;
     }
+    /* DEX Screener Section */
+    .dex-section {
+      margin: 40px auto;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 0 32px #00ffb3a0;
+      border-radius: 28px;
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      padding: 32px 16px 24px 16px;
+      backdrop-filter: blur(12px);
+    }
+    .dex-section h2 {
+      font-family: 'Share Tech Mono', monospace;
+      color: #00ffb3;
+      font-size: 2em;
+      margin-bottom: 18px;
+      text-shadow: 0 0 8px #00ffb3a0;
+      letter-spacing: 2px;
+    }
+    .dex-section iframe {
+      width: 100%;
+      min-height: 500px;
+      border: 0;
+      border-radius: 18px;
+      box-shadow: 0 0 24px #00ffb3a0;
+      background: #0f172a;
+    }
+    .dex-section a {
+      color: #00ffb3;
+      font-weight: 700;
+      text-decoration: underline;
+      margin-top: 10px;
+      display: inline-block;
+    }
     .locks-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
@@ -475,10 +510,11 @@
       .locks-grid { grid-template-columns: 1fr; }
       .header h1 { font-size: 2.2em; }
       .logo-img { width: 80px; height: 80px; }
+      .dex-section { max-width: 100%; }
     }
     @media (max-width: 600px) {
       .container { padding: 10px; }
-      .glass { padding: 16px 8px; }
+      .glass, .dex-section { padding: 16px 8px; }
       .stat-card, .lock-card { padding: 16px; }
     }
   </style>
@@ -518,6 +554,21 @@
         <span class="wallet-address" id="walletAddress"></span>
       </div>
     </section>
+    <!-- DEX Screener LIFE TIME Box -->
+    <section class="dex-section">
+      <h2>LIFE TIME DEX SCREEN</h2>
+      <iframe
+        src="https://dexscreener.com/monad/0x1b685B0c771b877d1a4e8F02365a4A809E962c81?embed=1"
+        allowfullscreen
+        loading="lazy"
+        title="DEX Screener"
+      ></iframe>
+      <div>
+        <a href="https://dexscreener.com/monad/0x1b685B0c771b877d1a4e8F02365a4A809E962c81" target="_blank">
+          View on DEX Screener
+        </a>
+      </div>
+    </section>
     <div id="loading" class="loading" style="display: none;">
       <div class="spinner"></div>
       <div>Loading your digital life locks...</div>
@@ -530,7 +581,7 @@
         Built by the DRAGON Team 🚀
       </div>
       <div class="footer-links">
-        Contract: <a href="https://explorer.monad.xyz/address/0x866a16c42F6B0016E048aCd696662bE2E7d31F5F" target="_blank" class="contract-highlight">
+        Contract: <a href="https://monadvision.com/address/0x866a16c42F6B0016E048aCd696662bE2E7d31F5F?tab=Contract" target="_blank" class="contract-highlight">
           0x866a16c42F6B0016E048aCd696662bE2E7d31F5F
         </a>
       </div>
