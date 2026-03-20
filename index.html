@@ -498,7 +498,15 @@ footer a:hover{text-decoration:underline;}
   <div class="panel">
     <div class="panel-title">// WALLET CONNECTION</div>
     <div class="connect-area">
-      <button class="btn btn-connect" id="connectBtn" onclick="connectWallet()">🟢 CONNECT WALLET</button>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center;">
+        <button class="btn btn-connect" id="connectBtn" onclick="connectWallet()">🟢 CONNECT WALLET</button>
+        <button class="btn" id="disconnectBtn" onclick="disconnectWallet()"
+          style="display:none;background:linear-gradient(135deg,#1a0a00,#551100,#aa2200);
+                 color:#ff8866;border:1px solid rgba(255,80,0,.3);
+                 box-shadow:0 4px 16px rgba(200,50,0,.2);padding:15px 24px;font-size:12px;">
+          🔌 DISCONNECT
+        </button>
+      </div>
       <div class="wallet-badge" id="walletBadge">
         <div class="wallet-dot"></div>
         <span id="walletAddr">—</span>
@@ -652,6 +660,7 @@ async function connectWallet() {
     document.getElementById('walletAddr').textContent = account.slice(0,6)+'...'+account.slice(-4);
     document.getElementById('walletBadge').style.display = 'inline-flex';
     document.getElementById('connectBtn').textContent = '✅ '+account.slice(0,6)+'...'+account.slice(-4);
+    document.getElementById('disconnectBtn').style.display = 'inline-block';
     document.getElementById('lockPanel').style.display = 'block';
     setStatus('connectStatus', '✅ Connected to Monad Mainnet', 'ok');
 
@@ -664,6 +673,17 @@ async function connectWallet() {
     if (e.code===4001) setStatus('connectStatus','❌ Connection rejected','err');
     else setStatus('connectStatus','❌ '+e.message,'err');
   }
+}
+
+function disconnectWallet() {
+  account = null;
+  document.getElementById('connectBtn').textContent = '🟢 CONNECT WALLET';
+  document.getElementById('disconnectBtn').style.display = 'none';
+  document.getElementById('walletBadge').style.display = 'none';
+  document.getElementById('walletAddr').textContent = '—';
+  document.getElementById('lockPanel').style.display = 'none';
+  document.getElementById('locksContainer').innerHTML = '<div class="empty-state"><div class="empty-icon">🐉</div>Connect your wallet to view your locks</div>';
+  setStatus('connectStatus', 'Wallet disconnected — click Connect to reconnect', '');
 }
 
 function connectAndLock() {
@@ -906,6 +926,7 @@ window.addEventListener('load', async () => {
         document.getElementById('walletAddr').textContent = account.slice(0,6)+'...'+account.slice(-4);
         document.getElementById('walletBadge').style.display = 'inline-flex';
         document.getElementById('connectBtn').textContent = '✅ '+account.slice(0,6)+'...'+account.slice(-4);
+        document.getElementById('disconnectBtn').style.display = 'inline-block';
         document.getElementById('lockPanel').style.display = 'block';
         setStatus('connectStatus','✅ Auto-connected to Monad','ok');
         loadStats();
